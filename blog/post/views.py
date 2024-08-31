@@ -66,6 +66,19 @@ def listar_post(request):
 
     return render(request, 'listar_post.html', {'posts': posts})
 
+
 def detalle_post(request, pk):
     post = Post.objects.get(pk=pk)
     return render(request, 'detalle_post.html', {'post': post})
+
+
+def editar_post(request, pk):
+    post = Post.objects.get(pk=pk)
+    if request.method == 'POST':
+        form = PostModelForm(request.POST, instance=post)
+        if form.is_valid():
+            form.save()
+            return redirect('listar_post')
+    else:
+        form = PostModelForm(instance=post)
+    return render(request, 'editar_post.html', {'form': form})
