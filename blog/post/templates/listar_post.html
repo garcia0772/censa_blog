@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Lista de post</title>
+</head>
+<body>
+    <h1>lista de Posts</h>
+        <form method="get">
+            Fecha minima: <input name="fecha_min" >
+            Fecha maxima: <input name="fecha_max">
+            <button type="submit">Filtrar por Fecha</button>
+        </form>
+         <form method="get">
+            Buscar: <input type="text" name="q">
+            <button type="submit">Filtrar por categoria, descripcion o nombre</button>
+        </form>
+        <a href="{% url 'listar_post'  %}" class="button">
+          <button type="submit">Limpiar Filtros</button>
+        </a>
+    <ul>
+        {% for post in posts %}
+        <li> <a href="{% url 'detalle_post' post.pk%}">{{ post.titulo }} </a> - {{ post.fecha_publicacion }} - {{ post.categoria }} - {{ post.autor }} - <a href="{% url 'detalle_post' post.pk%}"> <Button>Vista de detalle</Button> </a>
+        </li>
+        {% endfor %}
+    </ul>
+    <br>
+    <div>
+        {% if posts.has_previous %}
+            <a href="?page={{ posts.previous_page_number }}">Anterior</a>
+        {% endif %}
+        <span>Pagina {{ posts.number }} de {{ posts.paginator.num_pages }}</span>
+        {% if posts.has_next %}
+            <a href="?page={{ posts.next_page_number }}">Siguente</a>
+        {% endif %}
+    </div>
+    <br>
+   <a href="{% url 'inicio' %}">
+    ← Volver al inicio
+  </a>
+</body>
+</html>

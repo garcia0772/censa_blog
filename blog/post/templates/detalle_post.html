@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Detalle del Post</title>
+</head>
+<body>
+    <h1>{{ post.titulo }}</h1>
+    <br>
+    <p>Fecha: {{ post.fecha_publicacion }}</p>
+    <p>Autor: {{ post.autor}}</p>
+    <br>
+    <p>{{ post.contenido }}</p>
+    <br>
+    <a href="{% url 'listar_post' %}">
+        Volver a la lista
+    </a>
+    <br>
+    <br>
+   <a href="{% url 'inicio' %}">
+    ← Volver al inicio
+  </a>
+</body>
+</html>
