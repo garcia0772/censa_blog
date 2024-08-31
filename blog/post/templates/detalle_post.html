@@ -11,6 +11,10 @@
     <br>
     <p>{{ post.contenido }}</p>
     <br>
+    <a href="{% url 'editar_post' post.pk %}">
+      editar
+    </a>
+    <br>
     <a href="{% url 'listar_post' %}">
         Volver a la lista
     </a>
